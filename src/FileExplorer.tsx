@@ -15,9 +15,9 @@ const FileExplorer: React.FC = () => {
 
 	const renderFiles = (data: FileData[], level: number = 0) => {
 		return data.map((item) => (
-			<div key={item.name}>
+			<div key={item.name} style={{ paddingLeft: `${level * 10}px` }}>
 				{item.type === 'folder' ? (
-					<div style={{ paddingLeft: `${level * 10}px` }}>
+					<div>
 						<div onClick={() => toggleFolder(item.name)}>
 							{expandedFolders.includes(item.name) ? '📂' : '📁'} {item.name}
 						</div>
