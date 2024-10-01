@@ -1,4 +1,6 @@
-export const Files = {
+import { FileData } from './types';
+
+export const Files: FileData = {
 	type: 'folder',
 	name: 'parent',
 	data: [
