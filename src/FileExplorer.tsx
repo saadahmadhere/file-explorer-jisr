@@ -12,18 +12,19 @@ const FileExplorer: React.FC = () => {
 			setExpandedFolders([...expandedFolders, folderName]);
 		}
 	};
-	const renderFiles = (data: FileData[]) => {
+
+	const renderFiles = (data: FileData[], level: number = 0) => {
 		return data.map((item) => (
-			<div>
+			<div key={item.name}>
 				{item.type === 'folder' ? (
-					<>
+					<div style={{ paddingLeft: `${level * 10}px` }}>
 						<div onClick={() => toggleFolder(item.name)}>
 							{expandedFolders.includes(item.name) ? '📂' : '📁'} {item.name}
 						</div>
 						{expandedFolders.includes(item.name) &&
 							item.data &&
-							renderFiles(item.data)}
-					</>
+							renderFiles(item.data, level + 1)}
+					</div>
 				) : (
 					`📄${item.name}`
 				)}
