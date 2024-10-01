@@ -4,13 +4,19 @@ import { Files } from './fileData';
 
 const FileExplorer: React.FC = () => {
 	const [expandedFolders, setExpandedFolders] = useState<string[]>([]);
+	const [selectedFile, setSelectedFile] = useState<string | null>(null);
 
 	const toggleFolder = (folderName: string) => {
+		setSelectedFile(null);
 		if (expandedFolders.includes(folderName)) {
 			setExpandedFolders(expandedFolders.filter((name) => name !== folderName));
 		} else {
 			setExpandedFolders([...expandedFolders, folderName]);
 		}
+	};
+
+	const handleLeftClick = (fileName: string) => {
+		setSelectedFile(fileName);
 	};
 
 	const renderFiles = (data: FileData[], level: number = 0) => {
@@ -26,7 +32,15 @@ const FileExplorer: React.FC = () => {
 							renderFiles(item.data, level + 1)}
 					</div>
 				) : (
-					`📄${item.name}`
+					<div
+						onClick={() => handleLeftClick(item.name)}
+						style={{
+							backgroundColor:
+								selectedFile === item.name ? 'lightblue' : 'transparent',
+						}}
+					>
+						📄{item.name}
+					</div>
 				)}
 			</div>
 		));
