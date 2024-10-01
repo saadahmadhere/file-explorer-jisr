@@ -1,8 +1,13 @@
 import React from 'react';
 import './App.css';
+import FileExplorer from './FileExplorer';
 
 function App() {
-	return <div className='App'>Initiliase repo</div>;
+	return (
+		<div className='App'>
+			<FileExplorer />
+		</div>
+	);
 }
 
 export default App;
